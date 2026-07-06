@@ -1,7 +1,7 @@
 use crate::enums::{Direction, Effects, Message};
 
 use crossbeam_channel::{Receiver, Sender};
-use effects::{ambient, christmas, disco, fade, lightning, ripple, scanner, swipe, temperature};
+use effects::{christmas, disco, fade, lightning, ripple, scanner, swipe, temperature};
 use error_stack::{Result, ResultExt};
 use legion_rgb_driver::{BaseEffects, Keyboard, SPEED_RANGE};
 use profile::Profile;
@@ -186,11 +186,6 @@ impl Inner {
             }
             Effects::Lightning => lightning::play(self, profile, rng),
             Effects::Scanner => scanner::play(self, profile),
-            Effects::AmbientLight { mut fps, mut saturation_boost } => {
-                fps = fps.clamp(1, 60);
-                saturation_boost = saturation_boost.clamp(0.0, 1.0);
-                ambient::play(self, fps, saturation_boost);
-            }
             Effects::SmoothWave { mode, clean_with_black } => {
                 profile.rgb_zones = profile::arr_to_zones([255, 0, 0, 0, 255, 0, 0, 0, 255, 255, 0, 255]);
                 swipe::play(self, profile, mode, clean_with_black);

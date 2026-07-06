@@ -10,11 +10,7 @@ pub enum Effects {
     Smooth,
     Wave,
     Lightning,
-    scanner,
-    AmbientLight {
-        fps: u8,
-        saturation_boost: f32,
-    },
+    Scanner,
     SmoothWave {
         mode: SwipeMode,
         clean_with_black: bool,
