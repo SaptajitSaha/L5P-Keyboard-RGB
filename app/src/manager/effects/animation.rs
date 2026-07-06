@@ -29,14 +29,39 @@ pub fn transition(
 }
 
 pub fn animation_delay(speed: u8) -> Duration {
+    let speed = speed.clamp(1, 10);
+
     Duration::from_millis(match speed {
-        1 => 80,
-        2 => 60,
-        3 => 40,
-        4 => 20,
-        5 => 5,
-        _ => 40,
+        1 => 300,
+        2 => 240,
+        3 => 180,
+        4 => 130,
+        5 => 90,
+        6 => 55,
+        7 => 30,
+        8 => 15,
+        9 => 5,
+        10 => 0,
+        _ => 90,
     })
+}
+
+pub fn transition_timing(speed: u8) -> (u8, u64) {
+    let speed = speed.clamp(1, 10);
+
+    match speed {
+        1 => (20, 26),
+        2 => (18, 22),
+        3 => (16, 18),
+        4 => (14, 15),
+        5 => (12, 12),
+        6 => (10, 10),
+        7 => (8, 8),
+        8 => (6, 6),
+        9 => (5, 5),
+        10 => (4, 4),
+        _ => (12, 12),
+    }
 }
 
 pub fn apply_brightness(mut rgb: [u8; 12], brightness_level: u8) -> [u8; 12] {
