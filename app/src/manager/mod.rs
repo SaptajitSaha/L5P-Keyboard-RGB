@@ -1,7 +1,7 @@
 use crate::enums::{Direction, Effects, Message};
 
 use crossbeam_channel::{Receiver, Sender};
-use effects::{christmas, disco, fade, lightning, ripple, scanner, swipe, temperature};
+use effects::{christmas, disco, fade, lightning, ripple, snake, swipe, knight, temperature};
 use error_stack::{Result, ResultExt};
 use legion_rgb_driver::{BaseEffects, Keyboard, SPEED_RANGE};
 use profile::Profile;
@@ -185,7 +185,6 @@ impl Inner {
                 self.keyboard.set_effect(effect).unwrap();
             }
             Effects::Lightning => lightning::play(self, profile, rng),
-            Effects::Scanner => scanner::play(self, profile),
             Effects::SmoothWave { mode, clean_with_black } => {
                 profile.rgb_zones = profile::arr_to_zones([255, 0, 0, 0, 255, 0, 0, 0, 255, 255, 0, 255]);
                 swipe::play(self, profile, mode, clean_with_black);
@@ -195,6 +194,8 @@ impl Inner {
             Effects::Christmas => christmas::play(self, rng),
             Effects::Fade => fade::play(self, profile),
             Effects::Temperature => temperature::play(self),
+            Effects::Knight => knight::play(self, profile),
+            Effects::Snake => snake::play(self, profile),
             Effects::Ripple => ripple::play(self, profile),
         }
     }

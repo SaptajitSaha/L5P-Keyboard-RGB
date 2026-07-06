@@ -10,7 +10,6 @@ pub enum Effects {
     Smooth,
     Wave,
     Lightning,
-    Scanner,
     SmoothWave {
         mode: SwipeMode,
         clean_with_black: bool,
@@ -24,7 +23,10 @@ pub enum Effects {
     Fade,
     Temperature,
     Ripple,
+    Knight,
+    Snake,
 }
+
 
 #[derive(Default, Debug, Clone, Copy, Serialize, Deserialize, EnumIter, EnumString, PartialEq)]
 pub enum SwipeMode {
@@ -42,7 +44,7 @@ impl PartialEq for Effects {
 #[allow(dead_code)]
 impl Effects {
     pub fn takes_color_array(self) -> bool {
-        matches!(self, Self::Static | Self::Breath | Self::Lightning | Self::Scanner | Self::Swipe { .. } | Self::Fade | Self::Ripple)
+        matches!(self, Self::Static | Self::Breath | Self::Lightning | Self::Swipe { .. } | Self::Fade | Self::Ripple | Self::Wave | Self::Knight | Self::Snake)
     }
 
     pub fn takes_direction(self) -> bool {
@@ -52,7 +54,7 @@ impl Effects {
     pub fn takes_speed(self) -> bool {
         matches!(
             self,
-            Self::Breath | Self::Smooth | Self::Wave | Self::Lightning | Self::Scanner | Self::SmoothWave { .. } | Self::Swipe { .. } | Self::Disco | Self::Fade | Self::Ripple
+            Self::Breath | Self::Smooth | Self::Wave | Self::Lightning | Self::SmoothWave { .. } | Self::Swipe { .. } | Self::Disco | Self::Fade | Self::Ripple | Self::Knight | Self::Snake
         )
     }
 

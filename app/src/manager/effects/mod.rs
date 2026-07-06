@@ -13,10 +13,13 @@ pub mod disco;
 pub mod fade;
 pub mod lightning;
 pub mod ripple;
-pub mod scanner;
 pub mod swipe;
 pub mod temperature;
 pub mod zones;
+pub mod knight;
+pub mod snake;
+pub mod animation;
+pub mod frame;
 
 pub fn show_effect_ui(ui: &mut egui::Ui, profile: &mut Profile, update_lights: &mut bool, theme: &crate::gui::style::Theme) {
     let mut effect = profile.effect;
